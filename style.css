@@ -1,0 +1,405 @@
+/* --- VARIABLES Y RESETEO --- */
+:root {
+    --color-fondo: #121212;
+    --color-fondo-sec: #1e1e1e;
+    --color-primario: #ffffff;
+    --color-secundario: #aaaaaa;
+    /* Un color de acento, puedes cambiarlo (ej: un dorado, verde neón, etc.) */
+    --color-acento: #33ff99; 
+    --fuente-principal: 'Arial', 'Helvetica Neue', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* ¡Animación de scroll! */
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-primario);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.section {
+    padding: 6rem 0;
+}
+
+.section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.bg-oscuro {
+    background-color: var(--color-fondo-sec);
+}
+
+/* --- NAVEGACIÓN --- */
+.navbar {
+    background-color: rgba(18, 18, 18, 0.55);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #333;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 20px;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primario);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.navbar .nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.navbar .nav-links li {
+    margin-left: 1.5rem;
+}
+
+.navbar .nav-links a {
+    color: var(--color-secundario);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: var(--color-primario);
+}
+
+/* --- HERO (INICIO) --- */
+.hero {
+    height: 100vh;
+    background-image: url('images/foto5.jpg'); /* ¡Usa tu foto aquí! */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efecto Parallax simple */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    color: #fff;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Oscurece la imagen */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 3px;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.btn-principal {
+    background-color: var(--color-acento);
+    color: #000;
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-principal:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--color-acento);
+}
+
+/* --- SECCIÓN MÚSICA --- */
+.grid-musica {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card-musica {
+    background-color: var(--color-fondo-sec);
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-musica:hover {
+    transform: translateY(-10px); /* ¡Animación de hover! */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.card-musica img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.card-musica h3 {
+    font-size: 1.5rem;
+    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+}
+
+.card-musica p {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    color: var(--color-secundario);
+}
+
+.plataformas-links {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.plataformas-links a {
+    color: var(--color-secundario);
+    font-size: 1.8rem;
+    margin-right: 1rem;
+    transition: color 0.3s ease;
+}
+
+.plataformas-links a:hover {
+    color: var(--color-acento);
+}
+
+/* --- SECCIÓN EVENTOS --- */
+.lista-eventos {
+    list-style: none;
+}
+
+.lista-eventos li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #333;
+}
+
+.lista-eventos .fecha {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--color-acento);
+    flex-basis: 100px;
+}
+
+.lista-eventos .lugar {
+    font-size: 1.2rem;
+    flex-grow: 1;
+    margin-left: 2rem;
+}
+
+.btn-secundario {
+    background-color: transparent;
+    border: 2px solid var(--color-acento);
+    color: var(--color-acento);
+    padding: 8px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-secundario:hover {
+    background-color: var(--color-acento);
+    color: #000;
+}
+
+.btn-secundario.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* --- SECCIÓN TIENDA --- */
+.grid-tienda {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.card-producto {
+    background-color: var(--color-fondo-sec);
+    border: 1px solid #333;
+    border-radius: 8px;
+    text-align: center;
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.card-producto:hover {
+    transform: translateY(-10px);
+}
+
+.card-producto img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+/* --- SECCIÓN SOBRE (GALERÍA) --- */
+.sobre-texto {
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.galeria img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.galeria img:hover {
+    transform: scale(1.03);
+}
+
+/* --- FOOTER --- */
+.footer {
+    text-align: center;
+    padding: 3rem 0;
+    border-top: 1px solid #333;
+}
+
+.footer .social-links {
+    margin-top: 1rem;
+}
+
+.footer .social-links a {
+    color: var(--color-secundario);
+    font-size: 1.8rem;
+    margin: 0 0.75rem;
+    transition: color 0.3s ease;
+}
+
+.footer .social-links a:hover {
+    color: var(--color-acento);
+}
+
+/* --- RESPONSIVE (Para móviles) --- */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+    }
+    .navbar .nav-links {
+        margin-top: 1rem;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .hero p {
+        font-size: 1.2rem;
+    }
+    .lista-eventos li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    .lista-eventos .lugar {
+        margin-left: 0;
+    }
+    .galeria {
+        grid-template-columns: 1fr;
+    }
+}
+/* --- ESTILOS ADICIONALES PARA MÚSICA --- */
+
+/* Reemplazamos el grid anterior por uno de 2 columnas */
+.musica-video-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas de tamaño igual */
+    gap: 2rem;
+}
+
+.musica-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.musica-item p {
+    color: var(--color-secundario);
+    margin-bottom: 1.5rem;
+}
+
+/* Este es el TRUCO para que el video de YouTube
+  mantenga la proporción (16:9) en cualquier pantalla.
+*/
+.video-responsive {
+    position: relative;
+    overflow: hidden;
+    padding-top: 56.25%; /* Proporción 16:9 (9 / 16 = 0.5625) */
+    border-radius: 8px;
+}
+
+.video-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Para Spotify, solo nos aseguramos de que el iframe ocupe todo */
+.musica-item iframe {
+    width: 100%;
+    min-height: 352px; /* Altura estándar de Spotify */
+}
+
+/* Ajuste para móviles (columnas una encima de otra) */
+@media (max-width: 768px) {
+    .musica-video-grid {
+        grid-template-columns: 1fr; /* Una sola columna */
+    }
+}
