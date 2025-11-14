@@ -17,6 +17,7 @@
 
 html {
     scroll-behavior: smooth; /* ¡Animación de scroll! */
+    overflow-x: hidden;
 }
 
 body {
