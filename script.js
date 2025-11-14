@@ -1,51 +1,95 @@
-/*
-  CAMBIO IMPORTANTE:
-  Usamos 'window.addEventListener('load', ...)' 
-  en lugar de 'DOMContentLoaded'.
-  
-  'load' espera a que TODO (imágenes, iframes, etc.) cargue.
-  'DOMContentLoaded' solo espera por el HTML, y por eso fallaba.
-*/
-
 window.addEventListener('load', () => {
 
     // 1. Inicializar la librería AOS (Animate On Scroll)
     AOS.init({
-        duration: 1000, // Duración de la animación en ms
-        once: true,     // La animación solo ocurre una vez
-        offset: 50,     // Se activa 50px antes de que el elemento sea visible
+        duration: 1000,
+        once: false,
+        offset: 50,
     });
 
-    // 2. (¡EL SEGURO!)
-    // A veces, incluso después de 'load', los iframes tardan
-    // un microsegundo más en "pintarse" y ajustar el layout.
-    // Forzamos una actualización de las posiciones de AOS
-    // medio segundo después de que todo cargó, solo para estar 100% seguros.
+    // Pequeño retraso para asegurar que los iframes y todo se haya renderizado
     setTimeout(() => {
         AOS.refresh();
-    }, 500); // 500ms = medio segundo
+    }, 300); 
 
-    // 3. Smooth Scroll para los links de navegación (este código es el mismo)
+    // 2. Smooth Scroll para los links de navegación (este código es el mismo)
     const navLinks = document.querySelectorAll('.nav-links a');
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            // Previene el salto brusco
             e.preventDefault(); 
             
             const targetId = e.currentTarget.getAttribute('href');
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
-                // Calcula la posición del elemento
                 const offsetTop = targetElement.offsetTop;
 
-                // Desplazamiento suave
                 window.scrollTo({
-                    top: offsetTop - 70, // Descuenta la altura de la navbar
+                    top: offsetTop - 70, 
                     behavior: 'smooth'
                 });
             }
+        });
+    });
+
+    // 3. Lógica del Carrusel de la Pantalla de Inicio
+    const slides = document.querySelectorAll('.carousel-slide');
+    let currentSlide = 0;
+    const slideInterval = 7000; // Cambia cada 4 segundos
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (i === index) {
+                slide.classList.add('active');
+            }
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Mostrar el primer slide al cargar
+    if (slides.length > 0) {
+        showSlide(currentSlide);
+        // Iniciar el carrusel automático
+        setInterval(nextSlide, slideInterval);
+    }
+
+    // 4. Lógica de "Animar" para Próximos Estrenos
+    const animarButtons = document.querySelectorAll('.btn-animar');
+
+    // Cargar los contadores guardados del localStorage al iniciar
+    animarButtons.forEach(button => {
+        const estrenoId = button.dataset.estreno; // Ej: 'ritmo-nocturno'
+        const corazonesSpan = document.getElementById(`corazones-${estrenoId}`);
+        const savedCount = localStorage.getItem(`corazones-${estrenoId}`);
+        if (savedCount) {
+            corazonesSpan.textContent = savedCount;
+        }
+    });
+
+
+    animarButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const estrenoId = button.dataset.estreno; // Obtiene el ID del estreno
+            const corazonesSpan = document.getElementById(`corazones-${estrenoId}`);
+            
+            let currentCount = parseInt(corazonesSpan.textContent);
+            currentCount++;
+            corazonesSpan.textContent = currentCount;
+
+            // Guarda el nuevo contador en localStorage
+            localStorage.setItem(`corazones-${estrenoId}`, currentCount);
+
+            // Efecto visual rápido de "pop"
+            corazonesSpan.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                corazonesSpan.style.transform = 'scale(1)';
+            }, 200);
         });
     });
 
