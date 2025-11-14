@@ -24,6 +24,7 @@ body {
     background-color: var(--color-fondo);
     color: var(--color-primario);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 .container {
@@ -191,6 +192,7 @@ img {
     font-weight: bold;
     border-radius: 5px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap;
 }
 
 .btn-principal:hover {
