@@ -10,7 +10,7 @@ window.addEventListener('load', () => {
     // Pequeño retraso para asegurar que los iframes y todo se haya renderizado
     setTimeout(() => {
         AOS.refresh();
-    }, 300); 
+    }, 100); 
 
     // 2. Smooth Scroll para los links de navegación (este código es el mismo)
     const navLinks = document.querySelectorAll('.nav-links a');
