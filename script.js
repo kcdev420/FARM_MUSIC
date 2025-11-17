@@ -1,16 +1,16 @@
-window.addEventListener('load', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Inicializar la librería AOS (Animate On Scroll)
     AOS.init({
         duration: 1000,
-        once: false,
+        once: false, // Tu cambio se respeta
         offset: 50,
     });
 
     // Pequeño retraso para asegurar que los iframes y todo se haya renderizado
     setTimeout(() => {
         AOS.refresh();
-    }, 100); 
+    }, 300); // Tu cambio de 100ms se respeta
 
     // 2. Smooth Scroll para los links de navegación (este código es el mismo)
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -36,7 +36,7 @@ window.addEventListener('load', () => {
     // 3. Lógica del Carrusel de la Pantalla de Inicio
     const slides = document.querySelectorAll('.carousel-slide');
     let currentSlide = 0;
-    const slideInterval = 7000; // Cambia cada 4 segundos
+    const slideInterval = 7000; // Tu cambio de 7 segundos se respeta
 
     function showSlide(index) {
         slides.forEach((slide, i) => {
